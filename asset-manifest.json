@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/openliunet/static/css/main.c3931223.css",
+    "main.js": "/openliunet/static/js/main.d0cb28e8.js",
+    "static/js/787.ad1d2d1b.chunk.js": "/openliunet/static/js/787.ad1d2d1b.chunk.js",
+    "index.html": "/openliunet/index.html",
+    "main.c3931223.css.map": "/openliunet/static/css/main.c3931223.css.map",
+    "main.d0cb28e8.js.map": "/openliunet/static/js/main.d0cb28e8.js.map",
+    "787.ad1d2d1b.chunk.js.map": "/openliunet/static/js/787.ad1d2d1b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c3931223.css",
+    "static/js/main.d0cb28e8.js"
+  ]
+}
