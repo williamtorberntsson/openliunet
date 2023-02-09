@@ -29,6 +29,14 @@ function App() {
             </div>
           </Link>
         </div>
+
+        <div className="Button">
+          <Link to="https://minit.liu.se/">
+            <div className='MinIT'>
+              Min IT
+            </div>
+          </Link>
+        </div>
       </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
