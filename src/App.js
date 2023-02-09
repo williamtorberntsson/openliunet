@@ -31,12 +31,21 @@ function App() {
         </div>
 
         <div className="Button">
-          <Link to="https://minit.liu.se/">
-            <div className='MinIT'>
-              Min IT
+          <Link to="https://liuonline.sharepoint.com/sites/Lisam/SitePages/en/Tentamenstatistik.aspx" target="_blank" rel="noopener noreferrer">
+            <div className='Text Tenta'>
+              Tentastatistik
             </div>
           </Link>
         </div>
+        
+        <div className="Button">
+          <Link to="https://liuonline.sharepoint.com/sites/Lisam/SitePages/Kurser-och-program.aspx" target="_blank" rel="noopener noreferrer">
+            <div className='Text Kurser'>
+              Kurser
+            </div>
+          </Link>
+        </div>
+        
       </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
