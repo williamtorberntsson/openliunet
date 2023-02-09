@@ -1,48 +1,41 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
     <div className='Main'>
       <div className="App">
-        <div className='Button Schema'>
-          <a
-            className="Schema"
-            href="https://cloud.timeedit.net/liu/web/schema/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Schema
-          </a>
+        <div className="Button">
+          <Link to="https://cloud.timeedit.net/liu/web/schema/" target="_blank" rel="noopener noreferrer">
+            <div className='Text Schema'>
+              Schema
+            </div>
+          </Link>
         </div>
-        <div className='Button Printa'>
-          <a
-            className="Printa"
-            href="https://portalliu.onricoh.se/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Printa
-          </a>
+
+        <div className="Button">
+          <Link to="https://portalliu.onricoh.se/" target="_blank" rel="noopener noreferrer">
+            <div className='Text Printa'>
+              Printa
+            </div>
+          </Link>
         </div>
-        <div className='Button Boka'>
-          <a
-            href="https://cloud.timeedit.net/liu/web/wr_stud/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Boka Sal
-          </a>
+
+        <div className="Button">
+          <Link to="https://cloud.timeedit.net/liu/web/wr_stud/" target="_blank" rel="noopener noreferrer">
+            <div className='Text Boka'>
+              Boka Sal
+            </div>
+          </Link>
         </div>
       </div>
-      <div className="Github">
-        <a
-            href="https://github.com/williamtorberntsson/openliunet"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github page to contribute! 
-          </a>
-      </div>
+
+      <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
+        <div className='Github'>
+          Github page to contribute!
+        </div>
+      </Link>
     </div>
   );
 }
