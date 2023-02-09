@@ -1,7 +1,16 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .App {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Github {
+  text-align: center;
 }
 
 .App div {
