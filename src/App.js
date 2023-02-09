@@ -29,6 +29,14 @@ function App() {
             </div>
           </Link>
         </div>
+
+        <div className="Button">
+          <Link to="https://liuonline.sharepoint.com/sites/Lisam/SitePages/en/Tentamenstatistik.aspx" target="_blank" rel="noopener noreferrer">
+            <div className='Text Tenta'>
+              Tentastatistik
+            </div>
+          </Link>
+        </div>
       </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
