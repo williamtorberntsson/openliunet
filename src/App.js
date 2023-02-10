@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import TerminsTider from './TerminsTider';
 import './App.css';
 
 function App() {
+
+  const [termin, setTermin] = useState(false);
+
+  const toggleTermin = () => setTermin(!termin);
+
   return (
     <div className='Main'>
       <div className="App">
@@ -34,10 +40,11 @@ function App() {
           <Link to="https://ysektionen.se/student/tentastatistik/" target="_blank" rel="noopener noreferrer">
             <div className='Text Tenta'>
               Tentastatistik
+              (tek, fil, med finns)
             </div>
           </Link>
         </div>
-        
+
         <div className="Button">
           <Link to="https://minit.liu.se/" target="_blank" rel="noopener noreferrer">
             <div className='Text MinIT'>
@@ -45,7 +52,12 @@ function App() {
             </div>
           </Link>
         </div>
-        
+
+        <div className="Button" onClick={toggleTermin}>
+          <div className='Text Termin'>
+            <u>Terminstider</u>
+          </div>
+        </div>
       </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
@@ -53,6 +65,9 @@ function App() {
           Github page to contribute!
         </div>
       </Link>
+
+      <TerminsTider show={termin} />
+
     </div>
   );
 }
