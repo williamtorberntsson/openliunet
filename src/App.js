@@ -31,7 +31,7 @@ function App() {
         </div>
 
         <div className="Button">
-          <Link to="https://liuonline.sharepoint.com/sites/Lisam/SitePages/en/Tentamenstatistik.aspx" target="_blank" rel="noopener noreferrer">
+          <Link to="https://ysektionen.se/student/tentastatistik/" target="_blank" rel="noopener noreferrer">
             <div className='Text Tenta'>
               Tentastatistik
             </div>
@@ -39,9 +39,9 @@ function App() {
         </div>
         
         <div className="Button">
-          <Link to="https://liuonline.sharepoint.com/sites/Lisam/SitePages/Kurser-och-program.aspx" target="_blank" rel="noopener noreferrer">
-            <div className='Text Kurser'>
-              Kurser
+          <Link to="https://minit.liu.se/" target="_blank" rel="noopener noreferrer">
+            <div className='Text MinIT'>
+              MinIT
             </div>
           </Link>
         </div>
