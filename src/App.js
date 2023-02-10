@@ -37,6 +37,15 @@ function App() {
             </div>
           </Link>
         </div>
+        
+        <div className="Button">
+          <Link to="https://liuonline.sharepoint.com/sites/Lisam/SitePages/Kurser-och-program.aspx" target="_blank" rel="noopener noreferrer">
+            <div className='Text Kurser'>
+              Kurser
+            </div>
+          </Link>
+        </div>
+        
       </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
