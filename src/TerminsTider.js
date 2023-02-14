@@ -27,6 +27,16 @@ const TerminsTider = ({show}) => {
           <li>2023-08-28 (v 35) - 2024-01-13 (v 2)</li>
         </ul>
       </div>
+      <div className="FilFak">
+        <h2>FilFak Spring 2023</h2>
+        <ul>
+          <li>2023-01-23 (v 4) – 2023-06-11 (v 23)</li>
+        </ul>
+        <h2>FilFak Autumn 2023</h2>
+        <ul>
+          <li>2023-08-21 (v 34) - 2024-01-21 (v 3)</li>
+        </ul>
+      </div>
       <div className="MedFak">
         <h2>MedFak Spring 2023</h2>
         <ul>
