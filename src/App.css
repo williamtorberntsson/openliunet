@@ -59,6 +59,7 @@
 .Termin {
   background-color: rgb(245, 177, 50);
   color: black;
+  cursor: pointer;
 }
 
 .Github {
