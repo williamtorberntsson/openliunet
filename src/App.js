@@ -53,9 +53,9 @@ function App() {
           </Link>
         </div>
 
-        <div className="Button" onClick={toggleTermin}>
+        <div className="Button"  onClick={toggleTermin}>
           <div className='Text Termin'>
-            <u>Terminstider</u>
+            <p>Terminstider</p>
           </div>
         </div>
       </div>
