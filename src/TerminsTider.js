@@ -9,7 +9,7 @@ const TerminsTider = ({show}) => {
     <div className="Information">
       <div className="Tekfak">
         <h2>TekFak Spring 2023</h2>
-        <p><a href="https://liu.se/organisation/liu/lith/terminstider-for-tekniska-hogskolan">Also available from the source</a></p>
+        <p><a target="_blank" rel="noopener noreferrer" href="https://liu.se/organisation/liu/lith/terminstider-for-tekniska-hogskolan">Also available from the source</a></p>
         <h2>TekFak Autumn 2023</h2>
         <ul>
           <li>2023-08-28 (v 35) - 2024-01-13 (v 2)</li>
