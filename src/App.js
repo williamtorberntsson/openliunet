@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TerminsTider from './TerminsTider';
-import AktuelltNummer from './AktuelltNummer';
+import QueryComponent from './QueryComponent';
 import './App.css';
 
 function App() {
 
   const [termin, setTermin] = useState(false);
-  const [aktuelltnummer, setAktuelltNummer] = useState(false);
 
   const toggleTermin = () => setTermin(!termin);
-  const toggleAktuellNummer = () => setAktuelltNummer(!aktuelltnummer);
 
   return (
     <div className='Main'>
@@ -63,7 +61,7 @@ function App() {
         </div>
       </div>
       
-        <div className="Button" onClick={toggleAktuellNummer}>
+        <div className="Button">
             <div className='Text Forflutna'>
               Aktuellt föreläsnings-nummer
             </div>
@@ -77,7 +75,7 @@ function App() {
 
       <TerminsTider show={termin} />
 
-<AktuelltNummer show={aktuelltnummer}/>
+<QueryComponent/>
 
     </div>
   );
