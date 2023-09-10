@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TerminsTider from './TerminsTider';
+import AktuelltNummer from './AktuelltNummer';
 import './App.css';
 
 function App() {
 
   const [termin, setTermin] = useState(false);
+  const [aktuelltnummer, setAktuelltNummer] = useState(false);
 
   const toggleTermin = () => setTermin(!termin);
+  const toggleAktuellNummer = () => setAktuelltNummer(!aktuelltnummer);
 
   return (
     <div className='Main'>
@@ -59,6 +62,12 @@ function App() {
           </div>
         </div>
       </div>
+      
+        <div className="Button" onClick={toggleAktuellNummer}>
+            <div className='Text Forflutna'>
+              Aktuellt föreläsnings-nummer
+            </div>
+        </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
         <div className='Github'>
@@ -67,6 +76,8 @@ function App() {
       </Link>
 
       <TerminsTider show={termin} />
+
+<AktuelltNummer show={aktuelltnummer}/>
 
     </div>
   );

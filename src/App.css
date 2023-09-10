@@ -62,6 +62,12 @@
   cursor: pointer;
 }
 
+.Forflutna{
+  background-color: rgb(200, 231, 152);
+  color: black;
+  cursor: pointer;
+}
+
 .Github {
   text-align: center;
 }
