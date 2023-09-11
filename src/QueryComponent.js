@@ -4,43 +4,75 @@ import FetchDataComponent from './FetchDataComponent'
 import { createRoot } from 'react-dom/client'
 
 function QueryComponent () {
-  const [query, setQuery] = useState('')
-  const [result, setResult] = useState('')
+  const [root, setRoot] = useState(null)
+  const [course, setCourse] = useState('')
+  const [studentGroup, setStudentGroup] = useState('')
 
-  const handleButtonClick = async () => {
+  /**
+   * Send POST request to the server with the query
+   * and render the result in the DOM
+   */
+  const performQuery = async () => {
     try {
       const response = await fetch('http://shipon.lysator.liu.se:5829/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ query })
+        body: JSON.stringify({ query: course })
       })
 
       if (response.ok) {
         const data = await response.json()
-        setResult(data.result)
-        const root = createRoot(document.getElementById('fetchDataContainer'));
-        root.render(<FetchDataComponent apiUrl={data.result} />);
-      } else {
-        console.error('Error performing query')
+        const fetchDataContainer = document.getElementById('fetchDataContainer')
+        if (fetchDataContainer && fetchDataContainer instanceof HTMLElement) {
+          const fetchDataComponent = (
+            <FetchDataComponent
+              apiUrl={data.result}
+              studentGroup={studentGroup}
+            />
+          )
+          if (root == null) {
+            console.log('Creating root')
+            const newRoot = createRoot(fetchDataContainer)
+            newRoot.render(fetchDataComponent)
+            setRoot(newRoot)
+          } else {
+            root.render(fetchDataComponent)
+          }
+        }
       }
     } catch (error) {
-      console.error('Error:', error)
+      console.error(error)
+    }
+  }
+
+  const handleKeyDown = e => {
+    if (e.keyCode === 13) {
+      performQuery()
     }
   }
 
   return (
-    <div>
+    <div className='Information'>
+      <h2>Föreläsningsnummer</h2>
+      <p>Hur många föreläsningar har passerat i en kurs?</p>
       <input
         type='text'
-        placeholder='Skriv in en kurskod'
-        value={query}
-        onChange={e => setQuery(e.target.value)}
+        placeholder='Skriv en kurskod (t.ex. TATA24)'
+        value={course}
+        onChange={e => setCourse(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
-      <button onClick={handleButtonClick}>Sök!</button>
-      <div id='fetchDataContainer'>
-      </div>
+      <input
+        type='text'
+        placeholder='Skriv en studentgrupp (t.ex. D2.c)'
+        value={studentGroup}
+        onChange={e => setStudentGroup(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <button onClick={performQuery}>Sök!</button>
+      <div id='fetchDataContainer'></div>
     </div>
   )
 }
