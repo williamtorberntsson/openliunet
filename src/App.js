@@ -81,7 +81,7 @@ function App () {
       </div>
 
       <div className='Button' onClick={toggleActivityTable}>
-        <div className='Text Forflutna'>Nuvarande undervisnings-nummer</div>
+        <div className='Text Activity'>Nuvarande undervisnings-nummer</div>
       </div>
 
       <Link
