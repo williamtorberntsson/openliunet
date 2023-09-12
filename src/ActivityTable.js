@@ -46,7 +46,8 @@ function ActivityTable ({ url, studentGroup }) {
           }
           for (const tr of tableRowElements) {
             const teachingActivity = tr.children[3].textContent.trim()
-            if(!teachingActivity.trim()){ // Skip if the activity is empty
+            if (!teachingActivity.trim()) {
+              // Skip if the activity is empty
               continue
             }
             if (inputGroup) {
@@ -55,12 +56,11 @@ function ActivityTable ({ url, studentGroup }) {
                 .trim()
                 .split(' ')
               studentGroupsInRow[0] = studentGroupsInRow[0].toUpperCase()
-              const exactMatch =
-                studentGroupsInRow.includes(inputGroup)
+              const exactMatch = studentGroupsInRow.includes(inputGroup)
               const searchedSuperStudentGroup = inputGroup
                 .trim()
-                .split('.')[0].toUpperCase()
-              console.log(searchedSuperStudentGroup)
+                .split('.')[0]
+                .toUpperCase()
               const superGroupMatch = studentGroupsInRow.includes(
                 searchedSuperStudentGroup
               )

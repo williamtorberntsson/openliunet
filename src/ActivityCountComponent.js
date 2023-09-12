@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom'
  * @returns
  */
 function ActivityCountComponent ({ show }) {
-  const [course, setCourse] = useState('TATA24')
-  const [studentGroup, setStudentGroup] = useState('D2.c')
+  const [course, setCourse] = useState('')
+  const [studentGroup, setStudentGroup] = useState('')
   const [scheduleUrls, setScheduleUrls] = useState(null)
   const [shouldShowURLs, setShouldShowURLs] = useState(false)
   if (!show) {
@@ -38,7 +38,7 @@ function ActivityCountComponent ({ show }) {
         setScheduleUrls(data.result)
 
         const fetchDataComponent = (
-          <ActivityTable apiUrl={data.result} studentGroup={studentGroup} />
+          <ActivityTable url={data.result} studentGroup={studentGroup} />
         )
         const root = createRoot(fetchDataContainer)
         root.render(fetchDataComponent)
