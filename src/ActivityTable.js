@@ -35,32 +35,39 @@ function ActivityTable ({ apiUrl, studentGroup }) {
          * for the given student group.
          * e.g. 'Föreläsning' or 'Laboration'.
          */
-        function getActivityCountMap (tableRowElements, searchedStudentGroup) {
+        function getActivityCountMap (tableRowElements, inputGroup) {
           const countMap = new Map()
+          /**
+           * Increment the count of the given activity
+           */
+          function incrementActivity (activity) {
+            countMap.set(activity, countMap.get(activity) + 1 || 1)
+          }
           for (const tr of tableRowElements) {
             const teachingActivity = tr.children[3].textContent.trim()
-            if (searchedStudentGroup) {
+            if(!teachingActivity.trim()){ // Skip if the activity is empty
+              continue
+            }
+            if (inputGroup) {
               const studentGroupElement = tr.children[7]
-              const studentGroupsInRow = studentGroupElement.textContent
+              var studentGroupsInRow = studentGroupElement.textContent
                 .trim()
                 .split(' ')
+              studentGroupsInRow[0] = studentGroupsInRow[0].toUpperCase()
               const exactMatch =
-                studentGroupsInRow.includes(searchedStudentGroup)
-              const searchedSuperStudentGroup = searchedStudentGroup.trim().split('.')[0]
+                studentGroupsInRow.includes(inputGroup)
+              const searchedSuperStudentGroup = inputGroup
+                .trim()
+                .split('.')[0].toUpperCase()
               console.log(searchedSuperStudentGroup)
-              const superGroupMatch =
-                studentGroupsInRow.includes(searchedSuperStudentGroup)
+              const superGroupMatch = studentGroupsInRow.includes(
+                searchedSuperStudentGroup
+              )
               if (exactMatch || superGroupMatch) {
-                countMap.set(
-                  teachingActivity,
-                  countMap.get(teachingActivity) + 1 || 1
-                )
+                incrementActivity(teachingActivity)
               }
             } else {
-              countMap.set(
-                teachingActivity,
-                countMap.get(teachingActivity) + 1 || 1
-              )
+              incrementActivity(teachingActivity)
             }
           }
           return countMap
@@ -105,7 +112,7 @@ function ActivityTable ({ apiUrl, studentGroup }) {
                 <b>{key}</b>
               </td>
               <td>
-                {value - futureCountMap.get(key)} av {value}
+                {value - (futureCountMap.get(key) || 0)} av {value}
               </td>
             </tr>
           ))}

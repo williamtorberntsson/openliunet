@@ -1,7 +1,9 @@
 import './App.css'
+import './Activity.css'
 import React, { useState } from 'react'
 import ActivityTable from './ActivityTable'
 import { createRoot } from 'react-dom/client'
+import { Link } from 'react-router-dom'
 
 /**
  * Returns a component that asks user for a course code and student group,
@@ -12,6 +14,8 @@ import { createRoot } from 'react-dom/client'
 function ActivityCountComponent ({ show }) {
   const [course, setCourse] = useState('TATA24')
   const [studentGroup, setStudentGroup] = useState('D2.c')
+  const [scheduleUrls, setScheduleUrls] = useState(null)
+  const [shouldShowURLs, setShouldShowURLs] = useState(false)
   if (!show) {
     return null
   }
@@ -31,6 +35,7 @@ function ActivityCountComponent ({ show }) {
         const fetchDataContainer = document.getElementById(
           'activityTableContainer'
         )
+        setScheduleUrls(data.result)
 
         const fetchDataComponent = (
           <ActivityTable apiUrl={data.result} studentGroup={studentGroup} />
@@ -72,6 +77,30 @@ function ActivityCountComponent ({ show }) {
       />
       <button onClick={performQuery}>Sök!</button>
       <div id='activityTableContainer'></div>
+      {shouldShowURLs && scheduleUrls && (
+        <table className='UrlTable'>
+          <tr>
+            <td>terminschema</td>
+            <td>
+              <Link to={scheduleUrls.split(' ')[0]}>
+                {scheduleUrls.split(' ')[0]}
+              </Link>
+            </td>
+          </tr>
+          <tr>
+            <td>idag-framåt-schema</td>
+            <td>
+              <Link to={scheduleUrls.split(' ')[1]}>
+                {scheduleUrls.split(' ')[1]}
+              </Link>
+            </td>
+          </tr>
+        </table>
+      )}
+      <button onClick={() => setShouldShowURLs(!shouldShowURLs)}>
+        {shouldShowURLs ? '✓ ' : ''}
+        se TimeEdit-URLs
+      </button>
     </div>
   )
 }

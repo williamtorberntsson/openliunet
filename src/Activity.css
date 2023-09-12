@@ -1,0 +1,8 @@
+.UrlTable{
+    background-color: rgb(255, 220, 242);
+    flex-shrink: 0;
+}
+
+.UrlTable td{
+    border: 1px solid black;
+}
