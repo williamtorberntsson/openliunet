@@ -6,7 +6,7 @@ import './App.css'
 
 function App () {
   const [termin, setTermin] = useState(false)
-  const [activityTable, setActivityTable] = useState(true)
+  const [activityTable, setActivityTable] = useState(false)
 
   const toggleTermin = function () {
     setTermin(!termin)

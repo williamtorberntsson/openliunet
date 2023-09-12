@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 
 /**
  * Returns a table with the number of lectures/other activites that have passed
+ * @param {string} apiUrl - The URL to the TimeEdit
  * @returns
  */
-function ActivityTable ({ apiUrl, studentGroup }) {
+function ActivityTable ({ url, studentGroup }) {
   const [semesterCountMap, setSemesterCountMap] = useState(null)
   const [futureCountMap, setFutureCountMap] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -15,10 +16,10 @@ function ActivityTable ({ apiUrl, studentGroup }) {
    * return the result as a string
    */
   useEffect(() => {
-    if (!apiUrl) {
+    if (!url) {
       return
     }
-    const urls = apiUrl.split(' ') // Split the apiUrl into an array of URLs
+    const urls = url.split(' ') // Split the apiUrl into an array of URLs
     const promises = urls.map(url =>
       fetch(url).then(response => response.text())
     ) // Map the URLs to an array of fetch promises
@@ -92,7 +93,7 @@ function ActivityTable ({ apiUrl, studentGroup }) {
         setError(fetchError) // Set error if the request fails
         setLoading(false) // Set loading to false
       })
-  }, [apiUrl, studentGroup])
+  }, [url, studentGroup])
 
   if (loading) {
     return <p>Loading...</p>
