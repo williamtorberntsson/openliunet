@@ -86,7 +86,8 @@ function ActivityTable ({ url, studentGroup }) {
         // get the first date
         for (const tr of futureTrs) {
           const activity = tr.children[3].textContent.trim()
-          if (!(activity in nextOccurences)) {
+          const isFirstOccurence = !nextOccurences.has(activity)
+          if (isFirstOccurence) {
             let prevSibling = tr.previousElementSibling
             while (
               prevSibling &&
@@ -131,9 +132,7 @@ function ActivityTable ({ url, studentGroup }) {
         {semesterCountMap &&
           Array.from(semesterCountMap).map(([key, value]) => (
             <tr key={key}>
-              <td>
-                {key}
-              </td>
+              <td>{key}</td>
               <td>
                 {value - (futureCountMap.get(key) || 0)} av {value}
               </td>
