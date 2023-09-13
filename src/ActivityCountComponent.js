@@ -26,13 +26,9 @@ function ActivityCountComponent ({ show }) {
     const searchCourse = course.toUpperCase()
     setSearchStudentGroup(studentGroup)
     try {
-      const response = await fetch('http://shipon.lysator.liu.se:5829/query', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ query: searchCourse }),
-      })
+      const response = await fetch(
+        `https://shipon.lysator.liu.se:5829/${searchCourse}`,
+      )
 
       if (response.ok) {
         const data = await response.json()
@@ -53,8 +49,7 @@ function ActivityCountComponent ({ show }) {
     <div className='Information'>
       <h2>Undervisningsnummer</h2>
       <p>
-        Se hur många förläsningar, lektioner, etc. som har passerat i en
-        kurs!
+        Se hur många förläsningar, lektioner, etc. som har passerat i en kurs!
       </p>
       <div className='InputContainer'>
         <input
@@ -76,7 +71,10 @@ function ActivityCountComponent ({ show }) {
       {shouldShowActivityTable && (
         <ActivityTable url={scheduleUrls} studentGroup={searchStudentGroup} />
       )}
-      <button className='UrlButton' onClick={() => setShouldShowURLs(!shouldShowURLs)}>
+      <button
+        className='UrlButton'
+        onClick={() => setShouldShowURLs(!shouldShowURLs)}
+      >
         {shouldShowURLs ? '✓ ' : ''}
         visa URL:er
       </button>
