@@ -31,7 +31,7 @@ function ActivityCountComponent ({ show }) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ query: searchCourse })
+        body: JSON.stringify({ query: searchCourse }),
       })
 
       if (response.ok) {
