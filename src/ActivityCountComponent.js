@@ -2,7 +2,6 @@ import './App.css'
 import './Activity.css'
 import React, { useState } from 'react'
 import ActivityTable from './ActivityTable'
-import { createRoot } from 'react-dom/client'
 import { Link } from 'react-router-dom'
 
 /**
@@ -16,11 +15,14 @@ function ActivityCountComponent ({ show }) {
   const [studentGroup, setStudentGroup] = useState('')
   const [scheduleUrls, setScheduleUrls] = useState(null)
   const [shouldShowURLs, setShouldShowURLs] = useState(false)
+  const [shouldShowActivityTable, setShouldShowActivityTable] = useState(false)
+
   if (!show) {
     return null
   }
 
-  const performQuery = async () => {
+  const performSearch = async () => {
+    setShouldShowActivityTable(true)
     try {
       const response = await fetch('http://shipon.lysator.liu.se:5829/query', {
         method: 'POST',
@@ -32,16 +34,7 @@ function ActivityCountComponent ({ show }) {
 
       if (response.ok) {
         const data = await response.json()
-        const fetchDataContainer = document.getElementById(
-          'activityTableContainer'
-        )
         setScheduleUrls(data.result)
-
-        const fetchDataComponent = (
-          <ActivityTable url={data.result} studentGroup={studentGroup} />
-        )
-        const root = createRoot(fetchDataContainer)
-        root.render(fetchDataComponent)
       }
     } catch (error) {
       console.error(error)
@@ -50,7 +43,7 @@ function ActivityCountComponent ({ show }) {
 
   const handleKeyDown = e => {
     if (e.keyCode === 13) {
-      performQuery()
+      performSearch()
     }
   }
 
@@ -75,8 +68,10 @@ function ActivityCountComponent ({ show }) {
         onChange={e => setStudentGroup(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={performQuery}>Sök!</button>
-      <div id='activityTableContainer'></div>
+      <button onClick={performSearch}>Sök!</button>
+      {shouldShowActivityTable && (
+        <ActivityTable url={scheduleUrls} studentGroup={studentGroup} />
+      )}
       {shouldShowURLs && scheduleUrls && (
         <table className='UrlTable'>
           <tr>
