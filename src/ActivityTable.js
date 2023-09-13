@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import './Activity.css'
+import React, { useState, useEffect, useMemo } from 'react'
 
 /**
  * Returns a table with the number of lectures/other activites that have passed
@@ -6,10 +7,11 @@ import React, { useState, useEffect } from 'react'
  * @returns
  */
 function ActivityTable ({ url, studentGroup }) {
-  const [semesterCountMap, setSemesterCountMap] = useState(null)
-  const [futureCountMap, setFutureCountMap] = useState(null)
+  const [semesterCountMap, setSemesterCountMap] = useState(new Map())
+  const [futureCountMap, setFutureCountMap] = useState(new Map())
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const nextOccurences = useMemo(() => new Map(), [])
 
   /**
    * Fetch the two documents and count the occurences of 'Föreläsning'
@@ -80,12 +82,27 @@ function ActivityTable ({ url, studentGroup }) {
             studentGroup
           )
         )
-        setFutureCountMap(
-          getActivityCountMap(
-            documents[1].querySelectorAll('tr.rr.clickable2'),
-            studentGroup
-          )
-        )
+        const futureTrs = documents[1].querySelectorAll('tr.rr.clickable2')
+        // get the first date
+        for (const tr of futureTrs) {
+          const activity = tr.children[3].textContent.trim()
+          if (!(activity in nextOccurences)) {
+            let prevSibling = tr.previousElementSibling
+            while (
+              prevSibling &&
+              prevSibling.classList.contains('clickable2')
+            ) {
+              prevSibling = prevSibling.previousElementSibling
+            }
+            const time = tr.children[1].textContent.trim()
+            const date = prevSibling
+              ? prevSibling.children[1].textContent.trim() + ',' + time + ''
+              : ''
+            nextOccurences.set(activity, date)
+          }
+        }
+
+        setFutureCountMap(getActivityCountMap(futureTrs, studentGroup))
 
         setLoading(false) // Set loading to false
       })
@@ -93,7 +110,7 @@ function ActivityTable ({ url, studentGroup }) {
         setError(fetchError) // Set error if the request fails
         setLoading(false) // Set loading to false
       })
-  }, [url, studentGroup])
+  }, [url, studentGroup, nextOccurences])
 
   if (loading) {
     return <p>Loading...</p>
@@ -104,17 +121,24 @@ function ActivityTable ({ url, studentGroup }) {
   }
 
   return (
-    <table>
+    <table className='ActivityTable'>
       <tbody>
+        <tr className='tableHeaders'>
+          <th>Undervisningstyp</th>
+          <th>Antal passerade</th>
+          <th colSpan='2'>Nästa tillfälle</th>
+        </tr>
         {semesterCountMap &&
           Array.from(semesterCountMap).map(([key, value]) => (
             <tr key={key}>
               <td>
-                <b>{key}</b>
+                {key}
               </td>
               <td>
                 {value - (futureCountMap.get(key) || 0)} av {value}
               </td>
+              <td>{nextOccurences.get(key).split(',')[0]}</td>
+              <td>{nextOccurences.get(key).split(',')[1]}</td>
             </tr>
           ))}
       </tbody>

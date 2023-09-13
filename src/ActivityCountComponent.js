@@ -1,5 +1,4 @@
 import './App.css'
-import './Activity.css'
 import React, { useState } from 'react'
 import ActivityTable from './ActivityTable'
 import { Link } from 'react-router-dom'
@@ -13,6 +12,7 @@ import { Link } from 'react-router-dom'
 function ActivityCountComponent ({ show }) {
   const [course, setCourse] = useState('')
   const [studentGroup, setStudentGroup] = useState('')
+  const [searchStudentGroup, setSearchStudentGroup] = useState('')
   const [scheduleUrls, setScheduleUrls] = useState(null)
   const [shouldShowURLs, setShouldShowURLs] = useState(false)
   const [shouldShowActivityTable, setShouldShowActivityTable] = useState(false)
@@ -23,13 +23,15 @@ function ActivityCountComponent ({ show }) {
 
   const performSearch = async () => {
     setShouldShowActivityTable(true)
+    const searchCourse = course.toUpperCase()
+    setSearchStudentGroup(studentGroup)
     try {
       const response = await fetch('http://shipon.lysator.liu.se:5829/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ query: course.toUpperCase() })
+        body: JSON.stringify({ query: searchCourse })
       })
 
       if (response.ok) {
@@ -51,27 +53,33 @@ function ActivityCountComponent ({ show }) {
     <div className='Information'>
       <h2>Undervisningsnummer</h2>
       <p>
-        Visar hur många förläsningar, lektioner, etc. som har passerat i en
-        kurs.
+        Se hur många förläsningar, lektioner, etc. som har passerat i en
+        kurs!
       </p>
-      <input
-        type='text'
-        placeholder='Skriv en kurskod (t.ex. TATA24)'
-        value={course}
-        onChange={e => setCourse(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-      <input
-        type='text'
-        placeholder='Skriv en studentgrupp (t.ex. D2.c)'
-        value={studentGroup}
-        onChange={e => setStudentGroup(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
+      <div className='InputContainer'>
+        <input
+          type='text'
+          placeholder='En kurskod (t.ex. TATA24)'
+          value={course}
+          onChange={e => setCourse(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <input
+          type='text'
+          placeholder='En studentgrupp (t.ex. D2.c)'
+          value={studentGroup}
+          onChange={e => setStudentGroup(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
       <button onClick={performSearch}>Sök!</button>
       {shouldShowActivityTable && (
-        <ActivityTable url={scheduleUrls} studentGroup={studentGroup} />
+        <ActivityTable url={scheduleUrls} studentGroup={searchStudentGroup} />
       )}
+      <button className='UrlButton' onClick={() => setShouldShowURLs(!shouldShowURLs)}>
+        {shouldShowURLs ? '✓ ' : ''}
+        visa URL:er
+      </button>
       {shouldShowURLs && scheduleUrls && (
         <table className='UrlTable'>
           <tr>
@@ -92,10 +100,6 @@ function ActivityCountComponent ({ show }) {
           </tr>
         </table>
       )}
-      <button onClick={() => setShouldShowURLs(!shouldShowURLs)}>
-        {shouldShowURLs ? '✓ ' : ''}
-        se TimeEdit-URLs
-      </button>
     </div>
   )
 }

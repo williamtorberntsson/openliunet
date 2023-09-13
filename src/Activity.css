@@ -1,8 +1,30 @@
-.UrlTable{
-    background-color: rgb(255, 220, 242);
-    flex-shrink: 0;
+.InputContainer{
+    display: flex;
+    flex-direction: row;
+}
+input{
+    flex-grow: 1;
 }
 
-.UrlTable td{
-    border: 1px solid black;
+.UrlTable{
+    background-color: rgb(255, 220, 242);
+}
+
+.ActivityTable{
+    margin-top: 10px;
+}
+
+td{
+    padding:4px;
+    border: 1px solid rgb(128, 128, 128)
+}
+
+h2{
+    margin:0;
+}
+
+.UrlButton{
+    width: 40%;
+    margin-top:10px;
+    background-color: rgb(255, 220, 242);
 }
