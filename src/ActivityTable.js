@@ -126,7 +126,7 @@ function ActivityTable ({ url, studentGroup }) {
       <tbody>
         <tr className='tableHeaders'>
           <th>Undervisningstyp</th>
-          <th>Antal passerade</th>
+          <th>Passerade</th>
           <th colSpan='2'>Nästa tillfälle</th>
         </tr>
         {semesterCountMap &&
