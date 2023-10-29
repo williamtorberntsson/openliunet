@@ -58,6 +58,14 @@ function App() {
             <u>Terminstider</u>
           </div>
         </div>
+
+        <div className="Button">
+          <Link to="https://use.mazemap.com/#v=1&config=liu" target="_blank" rel="noopener noreferrer">
+            <div className='Text Karta'>
+              Karta
+            </div>
+          </Link>
+        </div>
       </div>
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">

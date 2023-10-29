@@ -62,6 +62,12 @@
   cursor: pointer;
 }
 
+.Karta {
+  background-color: rgb(247, 126, 215);
+  color: black;
+  cursor: pointer;
+}
+
 .Github {
   text-align: center;
 }
