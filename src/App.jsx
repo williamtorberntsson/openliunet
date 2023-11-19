@@ -68,13 +68,13 @@ function App() {
         </div>
       </div>
 
+      <TerminsTider show={termin} />
+
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
         <div className='Github'>
           Github page to contribute!
         </div>
       </Link>
-
-      <TerminsTider show={termin} />
 
     </div>
   );
