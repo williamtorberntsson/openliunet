@@ -8,7 +8,7 @@ const Karta = ({ show }) => {
   return (
     <div className="Information">
       <div className="Tekfak">
-        <h2>Campus kartor</h2>
+        <h2>Campuskartor</h2>
         <ul>
           <li>
             <a href="https://use.mazemap.com/#v=1&config=liu&zlevel=2&center=15.576785,58.398489&zoom=15.1&campusid=742">Campus Valla</a>
