@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TerminsTider from './TerminsTider';
+import Karta from './Karta';
 import './App.css';
 
 function App() {
 
   const [termin, setTermin] = useState(false);
+  const [karta, setKarta] = useState(false);
 
   const toggleTermin = () => setTermin(!termin);
+  const toggleKarta = () => setKarta(!karta)
 
   return (
     <div className='Main'>
@@ -59,16 +62,16 @@ function App() {
           </div>
         </div>
 
-        <div className="Button">
-          <Link to="https://use.mazemap.com/#v=1&config=liu" target="_blank" rel="noopener noreferrer">
+        <div className="Button" onClick={toggleKarta}>
             <div className='Text Karta'>
-              Karta
+              <u>Karta</u>
             </div>
-          </Link>
         </div>
       </div>
 
       <TerminsTider show={termin} />
+
+      <Karta show={karta} />
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
         <div className='Github'>
