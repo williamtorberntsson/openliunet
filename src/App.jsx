@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TerminsTider from './TerminsTider';
+import Karta from './Karta';
 import './App.css';
 
 function App() {
 
   const [termin, setTermin] = useState(false);
-
   const toggleTermin = () => setTermin(!termin);
 
   return (
@@ -58,15 +58,18 @@ function App() {
             <u>Terminstider</u>
           </div>
         </div>
+
+        <Karta />
+
       </div>
+
+      <TerminsTider show={termin} />
 
       <Link to="https://github.com/williamtorberntsson/openliunet" target="_blank" rel="noopener noreferrer">
         <div className='Github'>
           Github page to contribute!
         </div>
       </Link>
-
-      <TerminsTider show={termin} />
 
     </div>
   );
