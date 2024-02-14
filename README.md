@@ -1,6 +1,6 @@
 # LiUnet nologin version
 It you don't want to login for open information.
-Visit [OpenLiUNet](https://liunet.eu/)
+Visit [OpenLiUNet](https://openliunet.eu/)
 
 Please contribute with a pull request to expand the open liunet.
 
