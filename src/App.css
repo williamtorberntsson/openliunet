@@ -11,6 +11,14 @@
   justify-content: left;
 }
 
+.Round {
+  border-radius: 20px;
+}
+
+.Circle {
+  border-radius: 40%;
+}
+
 .Information {
   display: flex;
   max-width: 410px;
@@ -53,7 +61,7 @@
 }
 
 .MinIT {
-  background-color: rgb(255, 255, 122);
+  background-color: rgb(56, 221, 199);
   color: black;
 }
 
